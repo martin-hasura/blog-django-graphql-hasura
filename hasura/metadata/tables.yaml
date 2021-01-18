@@ -1,0 +1,13 @@
+- table:
+    schema: public
+    name: sample_table
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - created_at
+      - updated_at
+      - title
+      - content
+      filter: {}

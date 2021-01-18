@@ -1,0 +1,47 @@
+version: '2.4'
+
+services:      
+  django:
+    build: ./django
+    container_name: blog-django
+    restart: always
+    stdin_open: true
+    tty: true
+    depends_on:
+      - 'postgres'
+    volumes:
+      - ./django:/code
+    environment:
+      PYTHONUNBUFFERED: 1
+      DJANGO_SECRET: 'Q3d5ymmEjNBw37XQdL4xeRVvDCxgvqFrisALR4bng-0'
+    ports:
+      - "127.0.0.1:8000:8000"
+
+  hasura:
+    image: hasura/graphql-engine:latest.cli-migrations-v2
+    volumes:
+      - ./hasura/migrations:/hasura-migrations
+      - ./hasura/metadata:/hasura-metadata
+    container_name: blog-hasura
+    restart: always
+    depends_on:
+      - 'postgres'
+      - 'django'
+    environment:
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
+      HASURA_GRAPHQL_DEV_MODE: 'true'
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: 'public'
+      HASURA_GRAPHQL_DATABASE_URL: 'postgres://postgres:password@postgres:5432/postgres'
+      HASURA_GRAPHQL_ADMIN_SECRET: 'password'
+      HASURA_GRAPHQL_JWT_SECRET: '{ "type": "HS256", "key": "Q3d5ymmEjNBw37XQdL4xeRVvDCxgvqFrisALR4bng-0" }'
+    ports:
+      - "127.0.0.1:8080:8080"
+
+  postgres:
+    image: postgres:12
+    container_name: blog-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_DB: 'postgres'
+      POSTGRES_PASSWORD: 'password'
