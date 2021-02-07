@@ -74,7 +74,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -88,7 +87,7 @@ DATABASES = {
     #     'NAME': 'postgres',
     #     'USER': 'postgres',
     #     'PASSWORD': 'password',
-    #     'HOST': 'hds-postgres',
+    #     'HOST': 'blog-postgres',
     #     'PORT': '5432',
     # }
 }
@@ -140,7 +139,6 @@ GRAPHENE = {
 }
 
 GRAPHQL_JWT = {
-    'JWT_ENCODE_HANDLER': 'app.utils.jwt_encode',
     'JWT_PAYLOAD_HANDLER': 'app.utils.jwt_payload',
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
     'JWT_VERIFY_EXPIRATION': True,

@@ -1,4 +1,4 @@
-- name: Auth
+- name: graphene
   definition:
     url: http://host.docker.internal:8000/graphql
     timeout_seconds: 60

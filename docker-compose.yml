@@ -13,7 +13,7 @@ services:
       - ./django:/code
     environment:
       PYTHONUNBUFFERED: 1
-      DJANGO_SECRET: 'Q3d5ymmEjNBw37XQdL4xeRVvDCxgvqFrisALR4bng-0'
+      DJANGO_SECRET: 'Q3d5ymmEjNBw37XQdL4xeRVvDCxgvqFrisALR4bng-0' # *** CHANGE THIS ***
     ports:
       - "127.0.0.1:8000:8000"
 
@@ -33,7 +33,7 @@ services:
       HASURA_GRAPHQL_UNAUTHORIZED_ROLE: 'public'
       HASURA_GRAPHQL_DATABASE_URL: 'postgres://postgres:password@postgres:5432/postgres'
       HASURA_GRAPHQL_ADMIN_SECRET: 'password'
-      HASURA_GRAPHQL_JWT_SECRET: '{ "type": "HS256", "key": "Q3d5ymmEjNBw37XQdL4xeRVvDCxgvqFrisALR4bng-0" }'
+      HASURA_GRAPHQL_JWT_SECRET: '{ "type": "HS256", "key": "Q3d5ymmEjNBw37XQdL4xeRVvDCxgvqFrisALR4bng-0" }' # *** CHANGE THIS ***
     ports:
       - "127.0.0.1:8080:8080"
 
