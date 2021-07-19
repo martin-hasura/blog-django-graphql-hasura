@@ -42,7 +42,7 @@ class CreateUser(graphene.Mutation):
         user.save()
 
         profile_obj = profile.objects.get(user=user.id)        
-        token = get_token(user)
+        token = get_token(user).decode('utf-8')
         refresh_token = create_refresh_token(user)
         
         return CreateUser(user=user, profile=profile_obj, token=token, refresh_token=refresh_token)
